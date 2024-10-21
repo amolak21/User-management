@@ -1,13 +1,14 @@
 import express from "express";
 import userRoutes from "./routes/userRoutes";
 import mongoose from "mongoose";
+import cors from "cors";
 import { configDotenv } from "dotenv";
 
 configDotenv();
 const app = express();
 app.use(express.json());
-
-app.use("/users", userRoutes);
+app.use(cors());
+app.use("/api/users", userRoutes);
 
 mongoose
   .connect(process.env.DATABASE_URL || "")
